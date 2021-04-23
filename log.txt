@@ -1,11 +1,14 @@
-OSS: Process 12751 requesting read of address 10386 at time 0s, 80ns.
-OSS: Process 12751 requesting read of address 28674 at time 0s, 94ns.
-OSS: Process 12751 requesting write of address 19514 at time 0s, 108ns.
-OSS: Process 12751 requesting write of address 10338 at time 0s, 123ns.
-OSS: Dirty bit of frame 0 set, adding additionmal time to the clock
-OSS: Process 12751 requesting read of address 17901 at time 0s, 138ns.
-OSS: Process 12752 requesting write of address 10784 at time 0s, 138ns.
-OSS: Process 12752 requesting read of address 27505 at time 0s, 151ns.
-OSS: Process 12752 requesting read of address 19431 at time 0s, 155ns.
-OSS: Process 12752 requesting read of address 5123 at time 0s, 167ns.
-OSS: Process 12752 requesting write of address 21748 at time 0s, 176ns.
+OSS: Process 30315 requesting write of address 21758 at time 0s, 123ns.
+OSS: Process 30314 requesting read of address 28976 at time 0s, 125ns.
+OSS: Process 30315 requesting read of address 10534 at time 0s, 125ns.
+OSS: Process 30314 requesting write of address 27823 at time 0s, 132ns.
+OSS: Process 30315 requesting read of address 10167 at time 0s, 145ns.
+OSS: Process 30314 requesting write of address 8883 at time 0s, 155ns.
+OSS: Process 30315 requesting read of address 15089 at time 0s, 157ns.
+OSS: Process 30314 has terminated at time 0s, 164ns.
+OSS: Process 30314 requesting write of address 26264 at time 0s, 175ns.
+OSS: Process 30315 requesting read of address 23181 at time 0s, 195ns.
+OSS: Process 30314 requesting write of address 7362 at time 0s, 196ns.
+OSS: Process 30315 requesting write of address 25465 at time 0s, 217ns.
+OSS: Process 30314 requesting read of address 14525 at time 0s, 228ns.
+OSS: Process 30315 requesting read of address 9375 at time 0s, 237ns.

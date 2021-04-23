@@ -55,6 +55,7 @@ struct mesg_buffer{
     int mesg_processPrio;
     int mesg_timeQuant;
     int mesg_timeUsed;
+    bool mesg_terminateNow;
     bool mesg_terminated;
     bool mesg_typeOfSystem;
     bool mesg_blocked;
@@ -85,6 +86,8 @@ void signalHandler(int signal){
         cout << "Interrupt Signal Received" <<endl;
     else if(signal == 20)
         cout << "Exceeded Time, Terminating Program" <<endl;
+    else if(signal == 1)
+        cout << "Process Terminated" << endl;
 
     msgctl(msgid, IPC_RMID, NULL);
     msgctl(msgidTwo, IPC_RMID,NULL);
@@ -94,7 +97,7 @@ void signalHandler(int signal){
 }
 
 int main(int argc, char* argv[]){
-    cout << "user.cpp" << endl;
+    // cout << "user.cpp" << endl;
     signal(SIGINT, signalHandler);
     signal(SIGALRM, signalHandler);
     struct simClock *clock;
@@ -103,13 +106,16 @@ int main(int argc, char* argv[]){
     int size = sizeof(pTable) * LEN;
     int loops = 0;
     int ptMax = 32000;
+    int terminate;
+    int totalTimeTilExpire = 5;
+    alarm(totalTimeTilExpire);
     srand(getpid());
 
 
 
     //Shared Memory Creation for System Clock (Seconds)
     int sizeMem = 1024;
-    key_t keyClock = 786575;
+    key_t keyClock = 6666;
 
     shmidClock = shmget(keyClock, sizeof(struct simClock), 0644|IPC_CREAT);
     if (shmidClock == -1) {
@@ -124,7 +130,7 @@ int main(int argc, char* argv[]){
     }
 
     //Shared Memory Creation for Process Table 
-    key_t keyProc = 76589;
+    key_t keyProc = 7777;
 
     shmidProc = shmget(keyProc, sizeof(struct processes), 0644|IPC_CREAT);
     if (shmidProc == -1) {
@@ -142,20 +148,29 @@ int main(int argc, char* argv[]){
     //     cout << pTable[i].pid << " ; pid " << i << endl;
     // }
 
-    cout << clock->nano << " user process nano " << endl;
-    cout << clock->sec << " user process sec " << endl;
+    // cout << clock->nano << " user process nano " << endl;
+    // cout << clock->sec << " user process sec " << endl;
     //Set Up Message Queue
     int msgid;
-    key_t messageKey = ftok("poggers", 65);
+    int msgidTwo;
+    key_t messageKey = ftok("pog", 67);
+    key_t messageKeyTwo = ftok("home",68);
     msgid = msgget(messageKey, 0666|IPC_CREAT);
-    message.mesg_type = 1;
+    msgidTwo = msgget(messageKeyTwo, 0666|IPC_CREAT);
+    
 
     int ptNumber;
     int chanceForRead = 70;
+    int chanceforOutOfBounds = 5;
+    int isItOutOfBounds;
     int isItRead;
+    int chanceToTerminate = 50;
+    int didItTerminate;
     static int outOfOneHund = 100;
-    while(loops < 5){
+    terminate = false;
+    while(terminate == false){
         // cout << "loops: " << loops << endl;
+        
         strcpy(message.mesg_text, "Message Received");
         ptNumber = rand()%((ptMax - 1)+1);
         isItRead = rand()%((outOfOneHund - 1)+1);
@@ -165,12 +180,41 @@ int main(int argc, char* argv[]){
         }else{
             message.mesg_isItRead = 0;
         }
+        isItOutOfBounds = rand()%((outOfOneHund - 1)+1);
+        if(isItOutOfBounds < chanceforOutOfBounds){
+            while(ptNumber <= ptMax){
+                ptNumber += 1000;
+            }
+        }
         message.mesg_pid = getpid();
         message.mesg_ptNumber = ptNumber;
+        // cout << ptNumber << " user ptNumber" << endl;
+        message.mesg_type = 1;
         msgsnd(msgid, &message, sizeof(message), 0);
+        // cout << "after user message send" << endl;
+        message.mesg_type = getpid();
+        msgrcv(msgidTwo, &message, sizeof(message), message.mesg_type, 0);
+        // cout << "after user message rcv" << endl;
+        // cout << message.mesg_terminate << " ; message terminate" <<endl;
+        if(loops > 5){
+            didItTerminate = rand()%((outOfOneHund - 1)+1);
+            if(didItTerminate < chanceToTerminate){
+                // cout << "enter chance to terminate" << endl;
+                terminate = true;
+            }
+        }
+            // cout << terminate << " var terminate" << endl;
+        if(message.mesg_terminateNow == true){
+            // cout << "enter mesg term is true" << endl;
+            message.mesg_terminateNow = terminate;
+        }
         loops++;
     };
-
-
-
+    // cout << terminate << " var terminate outside" << endl;
+    // cout << "process dies" << endl;
+    // cout << message.mesg_terminateNow << " this should be 1" << endl;
+    message.mesg_terminated = 1;
+    message.mesg_type = 1;
+    msgsnd(msgid, &message, sizeof(message), 0);
+    return 0;
 }
