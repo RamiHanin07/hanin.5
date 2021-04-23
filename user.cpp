@@ -23,6 +23,11 @@ struct simClock{
     int nano;
 };
 
+struct pages{
+    int address;
+    int secondChance;
+};
+
 struct processes{
     int pid;
     int timeStartedSec;
@@ -37,7 +42,7 @@ struct processes{
     bool unblocked;
     int timeInReadySec;
     int timeInReadyNS;
-    int pageTable[32];
+    pages pageTable[32];
 };
 
 struct mesg_buffer{
@@ -63,6 +68,7 @@ struct mesg_buffer{
 struct frame{
     int pid;
     int dirtyBit;
+    int index;
 };
 
 int shmidClock;
@@ -136,8 +142,8 @@ int main(int argc, char* argv[]){
     //     cout << pTable[i].pid << " ; pid " << i << endl;
     // }
 
-    cout << clock->nano << endl;
-    cout << clock->sec << endl;
+    cout << clock->nano << " user process nano " << endl;
+    cout << clock->sec << " user process sec " << endl;
     //Set Up Message Queue
     int msgid;
     key_t messageKey = ftok("poggers", 65);
@@ -149,7 +155,7 @@ int main(int argc, char* argv[]){
     int isItRead;
     static int outOfOneHund = 100;
     while(loops < 5){
-        cout << "loops: " << loops << endl;
+        // cout << "loops: " << loops << endl;
         strcpy(message.mesg_text, "Message Received");
         ptNumber = rand()%((ptMax - 1)+1);
         isItRead = rand()%((outOfOneHund - 1)+1);

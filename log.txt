@@ -1,10 +1,11 @@
-OSS: Process 0 requesting read of address 23587 at time 0s, 13ns.
-OSS: Process 0 requesting write of address 26591 at time 0s, 14ns.
-OSS: Process 0 requesting write of address 2628 at time 0s, 26ns.
-OSS: Process 0 requesting read of address 2451 at time 0s, 36ns.
-OSS: Process 0 requesting read of address 26674 at time 0s, 44ns.
-OSS: Process 0 requesting read of address 19637 at time 0s, 54ns.
-OSS: Process 0 requesting write of address 19275 at time 0s, 55ns.
-OSS: Process 0 requesting read of address 21346 at time 0s, 67ns.
-OSS: Process 0 requesting read of address 18662 at time 0s, 76ns.
-OSS: Process 0 requesting read of address 12891 at time 0s, 77ns.
+OSS: Process 12751 requesting read of address 10386 at time 0s, 80ns.
+OSS: Process 12751 requesting read of address 28674 at time 0s, 94ns.
+OSS: Process 12751 requesting write of address 19514 at time 0s, 108ns.
+OSS: Process 12751 requesting write of address 10338 at time 0s, 123ns.
+OSS: Dirty bit of frame 0 set, adding additionmal time to the clock
+OSS: Process 12751 requesting read of address 17901 at time 0s, 138ns.
+OSS: Process 12752 requesting write of address 10784 at time 0s, 138ns.
+OSS: Process 12752 requesting read of address 27505 at time 0s, 151ns.
+OSS: Process 12752 requesting read of address 19431 at time 0s, 155ns.
+OSS: Process 12752 requesting read of address 5123 at time 0s, 167ns.
+OSS: Process 12752 requesting write of address 21748 at time 0s, 176ns.

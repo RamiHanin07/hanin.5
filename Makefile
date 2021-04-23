@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -o 
+CFLAGS= -o
 
 
 .cpp.o:

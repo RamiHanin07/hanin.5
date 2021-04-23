@@ -15,12 +15,18 @@
 #include <sys/msg.h>
 #include <string>
 #include <time.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 struct simClock{
     int sec;
     int nano;
+};
+
+struct pages{
+    int address;
+    int secondChance;
 };
 
 struct processes{
@@ -37,7 +43,7 @@ struct processes{
     bool unblocked;
     int timeInReadySec;
     int timeInReadyNS;
-    int pageTable[32];
+    pages pageTable[32];
 };
 
 struct mesg_buffer{
@@ -62,7 +68,9 @@ struct mesg_buffer{
 
 struct frame{
     int pid;
+    int index;
     int dirtyBit;
+    int secondChance;
 };
 
 int shmidClock;
@@ -72,9 +80,9 @@ int msgidTwo;
 
 void signalHandler(int signal);
 
-int frameTableAccess(frame *frameTable, int ptNum, int pid, int read);
+int frameTableAccess(vector<frame> &frameTable, int ptNum, int pid, int read, int &interval);
 
-void displayFrameTable(frame *frameTable);
+void displayFrameTable(vector<frame> &frameTable);
 
 void signalHandler(int signal){
 
@@ -94,7 +102,10 @@ void signalHandler(int signal){
 int main(int argc, char* argv[]){
     struct processes *pTable;
     struct simClock *clock;
-    struct frame frameTable[256];
+    // struct frame frameTable[256];
+    cout << "Before vector" <<endl;
+    vector<frame> frameTable;
+    cout << "after vector" << endl;
     signal(SIGINT, signalHandler);
     signal(SIGALRM, signalHandler);
     int LEN = 18;
@@ -108,6 +119,8 @@ int main(int argc, char* argv[]){
     int maxSystemTimeSpent = 15;
     const int maxTimeBetweenNewProcsNS = 100;
     const int maxTimeBetweenNewProcsSecs = 1;
+    int overWritePid = 0;
+    srand(time(NULL));
 
 
 
@@ -146,11 +159,13 @@ int main(int argc, char* argv[]){
     for(int i  = 0; i < 18; i++){
         pTable[i].pid = -1;
     }
-
-    for(int i = 0 ; i < 256; i++){
-        frameTable[i].pid = -1;
-        frameTable[i].dirtyBit = 0;
-    }
+    // cout << "before frameTable set" << endl;
+    // for(int i = 0 ; i < 256; i++){
+    //     frameTable.at(i).pid = -1;
+    //     // frameTable[i].pid = -1;
+    //     // frameTable[i].dirtyBit = 0;
+    // }
+    cout << "after frameTable set" << endl;
     // for(int i = 0; i < 18; i++){
     //     cout << pTable[i].pid << " ; pid " << i << endl;
     // }
@@ -162,14 +177,18 @@ int main(int argc, char* argv[]){
     cout << "before fork" << endl;
     //strcpy(buffer, fileName);
     for(int i = 0; i < 2; i++){
+        interval = rand()%((maxTimeBetweenNewProcsNS - 1)+1);
+        cout << interval << " interval" << endl;
         if(fork() == 0){
             cout << "enter fork" << endl;
-            interval = rand()%((maxTimeBetweenNewProcsSecs - 1)+1);
-            clock->sec+= interval;
+            clock->nano+= interval;
             while(clock->nano >= billion){
                 clock->nano-= billion;
                 clock->sec+= 1;
             };
+
+            cout << clock->sec << " main process sec" << endl;
+            cout << clock->nano << " main process nano" << endl;
             pTable[i].pid = getpid();
             pTable[i].timeStartedSec = clock->sec;
             pTable[i].timeStartedNS = clock->nano;
@@ -186,10 +205,13 @@ int main(int argc, char* argv[]){
     msgid = msgget(messageKey, 0666|IPC_CREAT);
 
     while(loops < 10){
+        overWritePid = 0;
         if(msgrcv(msgid, &message, sizeof(message), 1, 0) == -1){
             perror("msgrcv");
             return 1;
         }
+
+        // cout << msgrcv(msgid, &message, sizeof(message), 1, 0) << " message queue return " << endl;
 
         interval = rand()%((maxSystemTimeSpent - 1)+1);
         clock->nano+= interval;
@@ -202,23 +224,54 @@ int main(int argc, char* argv[]){
         cout << " : " << message.mesg_ptNumber << endl;
         if(message.mesg_isItRead == 1){
             log.open("log.txt", ios::app);
-            log << "OSS: Process " << i << " requesting read of address " << message.mesg_ptNumber << " at time " << clock->sec << "s, " << clock->nano << "ns." << endl;
+            log << "OSS: Process " << message.mesg_pid << " requesting read of address " << message.mesg_ptNumber << " at time " << clock->sec << "s, " << clock->nano << "ns." << endl;
             log.close();
-            frameTableAccess(frameTable, message.mesg_ptNumber, message.mesg_pid, message.mesg_isItRead);
+            overWritePid = frameTableAccess(frameTable, message.mesg_ptNumber, message.mesg_pid, message.mesg_isItRead, interval);
+            
+            
         }else
         {
             log.open("log.txt", ios::app);
-            log << "OSS: Process " << i << " requesting write of address " << message.mesg_ptNumber << " at time " << clock->sec << "s, " << clock->nano << "ns." << endl;
+            log << "OSS: Process " << message.mesg_pid << " requesting write of address " << message.mesg_ptNumber << " at time " << clock->sec << "s, " << clock->nano << "ns." << endl;
             log.close();
-            frameTableAccess(frameTable, message.mesg_ptNumber, message.mesg_pid, message.mesg_isItRead);
+            overWritePid = frameTableAccess(frameTable, message.mesg_ptNumber, message.mesg_pid, message.mesg_isItRead, interval);
         }
         
+        cout << interval << " ; interval" << endl;
+        clock->nano+= interval;
+        while(clock->nano >= billion){
+            clock->nano-= billion;
+            clock->sec+= 1;
+        };
+        
+        //If the frame was overwritten
+        if(overWritePid != 0){
+            interval = rand()%((maxSystemTimeSpent - 1)+1);
+            clock->nano+= interval;
+            while(clock->nano >= billion){
+                clock->nano-= billion;
+                clock->sec+= 1;
+            };
+            log.open("log.txt", ios::app);
+            log << "OSS: Process: " << overWritePid << "'s frame in frame table was overwritten by process: " << message.mesg_pid << " at time " << clock->sec << "s, " << clock->nano << "ns." << endl;
+            log.close();
+        }
+
+        //Set page table of process
+
+        for(int i = 0; i < 18; i++){
+            if(pTable[i].pid == message.mesg_pid){
+                // cout << "pid found at index " << i << endl;
+                pTable[i].pageTable[message.mesg_ptNumber/1024].address = message.mesg_ptNumber;
+                // cout << pTable[i].pageTable[message.mesg_ptNumber/1024] << " ptNumber stored in pageTable index: " << (message.mesg_ptNumber/1024) << endl;
+            }
+        }
         loops++;
     }
     
 
 
-    // displayFrameTable(frameTable);
+    displayFrameTable(frameTable);
     wait(NULL);
     msgctl(msgid, IPC_RMID, NULL);
     msgctl(msgidTwo, IPC_RMID,NULL);
@@ -227,26 +280,91 @@ int main(int argc, char* argv[]){
     
 }
 
-int frameTableAccess(frame *frameTable, int ptNum, int pid, int read){
-    int frameIndex = ptNum / 1024;
+int frameTableAccess(vector <frame> &frameTable, int ptNum, int pid, int read, int &interval){
+    int pageIndex = ptNum / 1024;
+    int overWritePid;
+    bool pageFault = true;
+    ofstream log("log.txt", ios::app);
+    log.close();
+    interval = 0;
+    int billion = 100000000;
+    int maxSystemTimeSpent = 15;
+    const int maxTimeBetweenNewProcsNS = 100;
+    const int maxTimeBetweenNewProcsSecs = 1;
     // cout << ptNum << " ; ptNum " << endl;
     // cout << frameIndex << " ; frameIndex " << endl;
-    if(frameTable[frameIndex].pid == -1){
-        frameTable[frameIndex].pid = pid;
+    
+    //If frameTable hasn't exceeded its maximum amount
+    if(frameTable.size() < 256){
+        // +cout << "enter if" << endl;
+        //If the frameTable isn't empty.
+        if(frameTable.size() > 0){
+            for(int i = 0; i < frameTable.size(); i++){
+                if(frameTable[i].pid == pid && frameTable[i].index == pageIndex){
+                    //Has been accessed recently, increment second chance!
+                    frameTable[i].secondChance = 1;
+                    if(read == 0){
+                        frameTable[i].dirtyBit = 1;
+                        log.open("log.txt", ios::app);
+                        log << "OSS: Dirty bit of frame " << i << " set, adding additional time to the clock" << endl;
+                        log.close();
+                        interval = rand()%((maxSystemTimeSpent - 1)+1);
+                    }
+                    else
+                    {
+                        frameTable[i].dirtyBit = 0;
+                    }
+                    // cout << "page already exists in frametable" << endl;
+                    pageFault = false;
+                }
+            }
+            if(pageFault == true){
+                // cout << "page fault!" << endl;
+                frameTable.push_back(frame());
+                frameTable.back().pid = pid;
+                frameTable.back().index = pageIndex;
+                if(read == 0){
+                    frameTable.back().dirtyBit = 1;
+                    log << "OSS: Dirty bit of frame " << frameTable.size() << " set, adding additional time to the clock" << endl;
+                    log.close();
+                    interval = rand()%((maxSystemTimeSpent - 1)+1);
+                }
+                else
+                {
+                    frameTable.back().dirtyBit = 0;
+                }
+
+                // cout << frameTable.back().pid << " new element pid" << endl;
+                // cout << frameTable.back().index << " new element index" << endl;
+            }
+        }
+        else
+        {
+            frameTable.push_back(frame());
+            frameTable.back().pid = pid;
+            frameTable.back().index = pageIndex;
+        }
     }
-    else
-    {
-        //If the frameTable already is full, what do.
-    }
-    if(read == 0){
-        frameTable[frameIndex].dirtyBit = 1;
-    }
-    // cout << frameTable[frameIndex].pid << " pid at frame table index " << frameIndex << endl;
+    // if(read == 0){
+    //     frameTable[frameIndex].dirtyBit = 1;
+    // }
+    // if(frameTable[frameIndex].pid == -1){
+    //     frameTable[frameIndex].pid = pid;
+    // }
+    // else
+    // {
+    //     overWritePid = frameTable[frameIndex].pid;
+    //     frameTable[frameIndex].pid = pid;
+    //     return overWritePid;
+    //     //If the frameTable already is full, what do.
+    // }
+    return 0;
+    // // cout << frameTable[frameIndex].pid << " pid at frame table index " << frameIndex << endl;
 }
 
-void displayFrameTable(frame *frameTable){
-    for(int i = 0; i < 256; i++){
-        cout << "Index " << i << ": pid: " << frameTable[i].pid << " dirty bit: " << frameTable[i].dirtyBit << endl;
+void displayFrameTable(vector<frame> &frameTable){
+    for(int i = 0; i < frameTable.size(); i++){
+        cout << "Index " << i << ": pid: " << frameTable[i].pid << " dirty bit: " << frameTable[i].dirtyBit << " second chance: " <<frameTable[i].secondChance << endl;
     }
 }
 
