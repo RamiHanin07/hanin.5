@@ -57,6 +57,7 @@ struct mesg_buffer{
     int mesg_unblockSec;
     int mesg_rqIndex;
     int mesg_ptNumber;
+    bool mesg_isItRead;
 } message;
 
 struct frame{
@@ -144,10 +145,21 @@ int main(int argc, char* argv[]){
     message.mesg_type = 1;
 
     int ptNumber;
+    int chanceForRead = 70;
+    int isItRead;
+    static int outOfOneHund = 100;
     while(loops < 5){
         cout << "loops: " << loops << endl;
         strcpy(message.mesg_text, "Message Received");
         ptNumber = rand()%((ptMax - 1)+1);
+        isItRead = rand()%((outOfOneHund - 1)+1);
+        if(isItRead < chanceForRead){
+            //1 for it being read, 0 for it being write.
+            message.mesg_isItRead = 1;
+        }else{
+            message.mesg_isItRead = 0;
+        }
+        message.mesg_pid = getpid();
         message.mesg_ptNumber = ptNumber;
         msgsnd(msgid, &message, sizeof(message), 0);
         loops++;
