@@ -1,0 +1,31 @@
+Project 5 is using a lot of framework from Project4.
+
+1. [x]Create a Clock and Process Table in shared memory, similar to Project4
+2. []Frame table of 256 entries. Use a vector to keep track of unallocated frames.
+3. []Every user process will have 32 entries in their page table.
+    a. []In the process table, have every process have a static array of 32 entires for the process page table. easiest way.
+4. []We don't need scheduling in this program (Fucking thank god).
+5. []The user processes will go into a loop, and simulate memory access, where they read and write, randomly from 0 to the maximum address. (0-32k)
+
+
+Simulate a user process' life time:
+1. U1 launches
+2. U1 goes into a loop.
+3. It will roll a random number from 0-32k, use PID for random number generation.
+4. Will send to OSS a message, stating that it would request either a read or write, at the specific address entry it rolled up in step 3.
+5. OSS will then check U1's page table to see where that entry would be. It would look and see if that page is in the frame table.
+6. If it is not, OSS would indicate that the page is now in the frame table, and then read or write from it (change the dirty bit)
+    a. in the Frame table, set which process accessed that page, so set the PID of the process.
+7. OSS doesn't actually send anything back to the process other than "your opperation was complete poggies", no need to go too deep.
+
+divide address by 1024 to see which frame its in (big brain)
+
+
+Page Fault (First memory request of a page)
+1. When a process page faults, it will be temporarily put in a blocked queue
+2. When enough time has passed, OSS will say that page is available.
+
+OSS increases clock after every request, just whenever OSS logs to the log file, just increment the time.
+
+Dirty bit: Only time dirty bit is changed is if a frame is written to. 
+    - Only time this matters is when switching a frame out, more time would need to be incremented by the clock.
