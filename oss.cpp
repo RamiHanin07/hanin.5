@@ -101,6 +101,13 @@ int main(int argc, char* argv[]){
     int size = sizeof(pTable) * LEN;
     ofstream log("log.txt");
     log.close();
+    int loops = 0;
+    int i = 0;
+    int interval = 0;
+    int billion = 100000000;
+    int maxSystemTimeSpent = 15;
+    const int maxTimeBetweenNewProcsNS = 100;
+    const int maxTimeBetweenNewProcsSecs = 1;
 
 
 
@@ -148,17 +155,29 @@ int main(int argc, char* argv[]){
     //     cout << pTable[i].pid << " ; pid " << i << endl;
     // }
 
-    clock->sec += 5;
-    clock->nano += 500;
 
     //Generate child process
     char buffer[50] = "";
     char fileName[10] = "test";
     cout << "before fork" << endl;
     //strcpy(buffer, fileName);
-    if(fork() == 0){
-        cout << "enter fork" << endl;
-        execl("./user", buffer);
+    for(int i = 0; i < 2; i++){
+        if(fork() == 0){
+            cout << "enter fork" << endl;
+            interval = rand()%((maxTimeBetweenNewProcsSecs - 1)+1);
+            clock->sec+= interval;
+            while(clock->nano >= billion){
+                clock->nano-= billion;
+                clock->sec+= 1;
+            };
+            pTable[i].pid = getpid();
+            pTable[i].timeStartedSec = clock->sec;
+            pTable[i].timeStartedNS = clock->nano;
+            log.open(fileName,ios::app);
+            log << "OSS: Generating process with PID " << getpid() << " at time: " << clock->sec << " s : " << clock->nano << "ns \n";
+            log.close();
+            execl("./user", buffer);
+        }
     }
 
 
@@ -166,12 +185,7 @@ int main(int argc, char* argv[]){
     key_t messageKey = ftok("poggers", 65);
     msgid = msgget(messageKey, 0666|IPC_CREAT);
 
-    int loops = 0;
-    int i = 0;
-    int interval = 0;
-    int billion = 100000000;
-    int maxSystemTimeSpent = 15;
-    while(loops < 5){
+    while(loops < 10){
         if(msgrcv(msgid, &message, sizeof(message), 1, 0) == -1){
             perror("msgrcv");
             return 1;
@@ -204,7 +218,7 @@ int main(int argc, char* argv[]){
     
 
 
-    //displayFrameTable(frameTable);
+    // displayFrameTable(frameTable);
     wait(NULL);
     msgctl(msgid, IPC_RMID, NULL);
     msgctl(msgidTwo, IPC_RMID,NULL);

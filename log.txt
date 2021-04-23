@@ -1,5 +1,10 @@
-OSS: Process 0 requesting read of address 29062 at time 5s, 513ns.
-OSS: Process 0 requesting read of address 31349 at time 5s, 514ns.
-OSS: Process 0 requesting read of address 4279 at time 5s, 526ns.
-OSS: Process 0 requesting write of address 24613 at time 5s, 536ns.
-OSS: Process 0 requesting read of address 11702 at time 5s, 544ns.
+OSS: Process 0 requesting read of address 23587 at time 0s, 13ns.
+OSS: Process 0 requesting write of address 26591 at time 0s, 14ns.
+OSS: Process 0 requesting write of address 2628 at time 0s, 26ns.
+OSS: Process 0 requesting read of address 2451 at time 0s, 36ns.
+OSS: Process 0 requesting read of address 26674 at time 0s, 44ns.
+OSS: Process 0 requesting read of address 19637 at time 0s, 54ns.
+OSS: Process 0 requesting write of address 19275 at time 0s, 55ns.
+OSS: Process 0 requesting read of address 21346 at time 0s, 67ns.
+OSS: Process 0 requesting read of address 18662 at time 0s, 76ns.
+OSS: Process 0 requesting read of address 12891 at time 0s, 77ns.
