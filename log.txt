@@ -1,14 +1,588 @@
-OSS: Process 30315 requesting write of address 21758 at time 0s, 123ns.
-OSS: Process 30314 requesting read of address 28976 at time 0s, 125ns.
-OSS: Process 30315 requesting read of address 10534 at time 0s, 125ns.
-OSS: Process 30314 requesting write of address 27823 at time 0s, 132ns.
-OSS: Process 30315 requesting read of address 10167 at time 0s, 145ns.
-OSS: Process 30314 requesting write of address 8883 at time 0s, 155ns.
-OSS: Process 30315 requesting read of address 15089 at time 0s, 157ns.
-OSS: Process 30314 has terminated at time 0s, 164ns.
-OSS: Process 30314 requesting write of address 26264 at time 0s, 175ns.
-OSS: Process 30315 requesting read of address 23181 at time 0s, 195ns.
-OSS: Process 30314 requesting write of address 7362 at time 0s, 196ns.
-OSS: Process 30315 requesting write of address 25465 at time 0s, 217ns.
-OSS: Process 30314 requesting read of address 14525 at time 0s, 228ns.
-OSS: Process 30315 requesting read of address 9375 at time 0s, 237ns.
+OSS: Generating process with PID 16966 at time: 0 s : 114ns 
+OSS: Generating process with PID 16968 at time: 0 s : 114ns 
+OSS: Generating process with PID 16967 at time: 0 s : 114ns 
+OSS: Generating process with PID 16969 at time: 0 s : 162ns 
+OSS: Generating process with PID 16970 at time: 0 s : 298ns 
+OSS: Generating process with PID 16971 at time: 0 s : 298ns 
+OSS: Current PID: 16966
+OSS: Current PID: 16967
+OSS: Current PID: 16968
+OSS: Current PID: 16969
+OSS: Current PID: 16970
+OSS: Current PID: 16971
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 requesting read of address 21865 at time 0s, 303ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 6818 at time 0s, 314ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 314ns.
+OSS: Process: 16968 has come unblocked at time 0s, 319ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 8783 at time 0s, 323ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 323ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 520 at time 0s, 325ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 325ns.
+OSS: Process: 16969 has come unblocked at time 0s, 325ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 14897 at time 0s, 333ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 333ns.
+OSS: Process: 16971 has come unblocked at time 0s, 333ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 30065 at time 0s, 336ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 336ns.
+OSS: Process: 16967 has come unblocked at time 0s, 336ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 requesting write of address 19757 at time 0s, 341ns.
+OSS: Process 16966 has been set to status blocked
+OSS: Process 16966 has entered blocked queue at time 0s, 341ns.
+OSS: Process: 16966 has come unblocked at time 0s, 342ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 9200 at time 0s, 344ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 344ns.
+OSS: Process: 16970 has come unblocked at time 0s, 344ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 25114 at time 0s, 358ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 358ns.
+OSS: Process: 16968 has come unblocked at time 0s, 358ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 15545 at time 0s, 362ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 362ns.
+OSS: Process: 16971 has come unblocked at time 0s, 365ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16969 requesting write of address 18658 at time 0s, 374ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 374ns.
+OSS: Process: 16969 has come unblocked at time 0s, 387ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 26145 at time 0s, 396ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 396ns.
+OSS: Process: 16968 has come unblocked at time 0s, 396ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 4135 at time 0s, 409ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 409ns.
+OSS: Process: 16967 has come unblocked at time 0s, 409ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting write of address 11978 at time 0s, 419ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 419ns.
+OSS: Process: 16970 has come unblocked at time 0s, 421ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting write of address 15841 at time 0s, 433ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 433ns.
+OSS: Process: 16967 has come unblocked at time 0s, 442ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 requesting read of address 23534 at time 0s, 452ns.
+OSS: Process 16966 has been set to status blocked
+OSS: Process 16966 has entered blocked queue at time 0s, 452ns.
+OSS: Process: 16971 has come unblocked at time 0s, 452ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 requesting read of address 23535 at time 0s, 457ns.
+OSS: Process: 16966 has come unblocked at time 0s, 457ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 20157 at time 0s, 457ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 457ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 4150 at time 0s, 466ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 466ns.
+OSS: Process: 16970 has come unblocked at time 0s, 476ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 8195 at time 0s, 487ns.
+OSS: Process: 16968 has come unblocked at time 0s, 487ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 31267 at time 0s, 492ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 492ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 20007 at time 0s, 492ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 492ns.
+OSS: Process: 16968 has come unblocked at time 0s, 501ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 3492 at time 0s, 505ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 505ns.
+OSS: Process: 16971 has come unblocked at time 0s, 506ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 29550 at time 0s, 509ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 509ns.
+OSS: Process: 16971 has come unblocked at time 0s, 509ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 21430 at time 0s, 514ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 514ns.
+OSS: Process: 16969 has come unblocked at time 0s, 514ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 7616 at time 0s, 516ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 516ns.
+OSS: Process: 16969 has come unblocked at time 0s, 516ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 29690 at time 0s, 530ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 530ns.
+OSS: Process: 16967 has come unblocked at time 0s, 530ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 7881 at time 0s, 537ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 537ns.
+OSS: Process: 16968 has come unblocked at time 0s, 537ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 9114 at time 0s, 538ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 538ns.
+OSS: Process: 16971 has come unblocked at time 0s, 538ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting write of address 17275 at time 0s, 543ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 543ns.
+OSS: Process: 16970 has come unblocked at time 0s, 550ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 2320 at time 0s, 551ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 551ns.
+OSS: Process: 16967 has come unblocked at time 0s, 551ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 12956 at time 0s, 555ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 555ns.
+OSS: Process: 16970 has come unblocked at time 0s, 555ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting write of address 19843 at time 0s, 567ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 567ns.
+OSS: Process: 16967 has come unblocked at time 0s, 569ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 requesting read of address 22161 at time 0s, 580ns.
+OSS: Process: 16967 has come unblocked at time 0s, 580ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 14712 at time 0s, 586ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 586ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 requesting read of address 20883 at time 0s, 593ns.
+OSS: Process 16966 has entered blocked queue at time 0s, 593ns.
+OSS: Process: 16971 has come unblocked at time 0s, 593ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 has terminated due to faulty memory access at time 0s, 604ns.
+OSS: Process: 16966 has come unblocked at time 0s, 604ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 13970 at time 0s, 617ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 617ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 2449 at time 0s, 622ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 622ns.
+OSS: Process: 16970 has come unblocked at time 0s, 622ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 10381 at time 0s, 635ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 635ns.
+OSS: Process: 16968 has come unblocked at time 0s, 635ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 26063 at time 0s, 638ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 638ns.
+OSS: Process: 16968 has come unblocked at time 0s, 638ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 27947 at time 0s, 644ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 644ns.
+OSS: Process: 16968 has come unblocked at time 0s, 644ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 4863 at time 0s, 647ns.
+OSS: Process: 16971 has come unblocked at time 0s, 647ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 12951 at time 0s, 657ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 657ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 16501 at time 0s, 671ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 671ns.
+OSS: Process: 16969 has come unblocked at time 0s, 671ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 26525 at time 0s, 677ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 677ns.
+OSS: Process: 16969 has come unblocked at time 0s, 677ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting write of address 4579 at time 0s, 688ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 688ns.
+OSS: Process: 16969 has come unblocked at time 0s, 691ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 24154 at time 0s, 691ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 691ns.
+OSS: Process: 16967 has come unblocked at time 0s, 691ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 13206 at time 0s, 692ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 692ns.
+OSS: Process: 16969 has come unblocked at time 0s, 692ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 2164 at time 0s, 696ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 696ns.
+OSS: Process: 16968 has come unblocked at time 0s, 696ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 14299 at time 0s, 705ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 705ns.
+OSS: Process: 16967 has come unblocked at time 0s, 705ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 24765 at time 0s, 712ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 712ns.
+OSS: Process: 16968 has come unblocked at time 0s, 712ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 1605 at time 0s, 725ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 725ns.
+OSS: Process: 16967 has come unblocked at time 0s, 725ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting write of address 2167 at time 0s, 733ns.
+OSS: Dirty bit of frame 28 set, adding additional time to the clock
+OSS: Process: 16970 has come unblocked at time 0s, 745ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 13504 at time 0s, 750ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 11255 at time 0s, 764ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 764ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 15815 at time 0s, 770ns.
+OSS: Process: 16967 has come unblocked at time 0s, 770ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 11122 at time 0s, 771ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 771ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 18003 at time 0s, 776ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 776ns.
+OSS: Process: 16970 has come unblocked at time 0s, 776ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 25727 at time 0s, 788ns.
+OSS: Process: 16967 has come unblocked at time 0s, 788ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16967 requesting write of address 4096 at time 0s, 796ns.
+OSS: Dirty bit of frame 41 set, adding additional time to the clock
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 requesting read of address 19935 at time 0s, 812ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 requesting read of address 20905 at time 0s, 823ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 0
+OSS: Process 16966 has terminated due to faulty memory access at time 0s, 830ns.
+OSS: Total Processes Terminated: 0 and has mesg terminated value: 1
+OSS: Process 16970 requesting read of address 23896 at time 0s, 848ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 848ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 6398 at time 0s, 855ns.
+OSS: Dirty bit of frame 1 set, adding additional time to the clock
+OSS: Process: 16970 has come unblocked at time 0s, 855ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 21006 at time 0s, 866ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 866ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 7733 at time 0s, 876ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 876ns.
+OSS: Process: 16968 has come unblocked at time 0s, 881ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 18566 at time 0s, 890ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 890ns.
+OSS: Process: 16968 has come unblocked at time 0s, 891ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 21395 at time 0s, 900ns.
+OSS: Dirty bit of frame 52 set, adding additional time to the clock
+OSS: Process: 16968 has come unblocked at time 0s, 908ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 10099 at time 0s, 920ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 920ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 731 at time 0s, 929ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 929ns.
+OSS: Process: 16968 has come unblocked at time 0s, 929ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16969 has terminated due to faulty memory access at time 0s, 929ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16969 requesting write of address 23873 at time 0s, 943ns.
+OSS: Dirty bit of frame 42 set, adding additional time to the clock
+OSS: Process: 16968 has come unblocked at time 0s, 947ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 2293 at time 0s, 958ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 958ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 1609 at time 0s, 970ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 970ns.
+OSS: Process: 16971 has come unblocked at time 0s, 970ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 1472 at time 0s, 975ns.
+OSS: Process: 16971 has come unblocked at time 0s, 975ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 11402 at time 0s, 983ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 983ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 14145 at time 0s, 987ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 987ns.
+OSS: Process: 16971 has come unblocked at time 0s, 987ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 16940 at time 0s, 988ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 988ns.
+OSS: Process: 16971 has come unblocked at time 0s, 988ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 13609 at time 0s, 997ns.
+OSS: Process: 16971 has come unblocked at time 0s, 997ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 16853 at time 0s, 1010ns.
+OSS: Dirty bit of frame 61 set, adding additional time to the clock
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 17173 at time 0s, 1023ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 20446 at time 0s, 1036ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 1036ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting write of address 17140 at time 0s, 1043ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 1043ns.
+OSS: Process: 16969 has come unblocked at time 0s, 1043ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 4279 at time 0s, 1049ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 1049ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1049ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16969 requesting write of address 23423 at time 0s, 1052ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 1052ns.
+OSS: Process: 16969 has come unblocked at time 0s, 1055ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting write of address 25187 at time 0s, 1063ns.
+OSS: Dirty bit of frame 46 set, adding additional time to the clock
+OSS: Process: 16969 has come unblocked at time 0s, 1066ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16969 requesting read of address 10864 at time 0s, 1070ns.
+OSS: Process 16969 has entered blocked queue at time 0s, 1070ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 19416 at time 0s, 1072ns.
+OSS: Dirty bit of frame 54 set, adding additional time to the clock
+OSS: Process: 16969 has come unblocked at time 0s, 1077ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 24184 at time 0s, 1084ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 1084ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 has terminated due to faulty memory access at time 0s, 1084ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 26994 at time 0s, 1098ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 1098ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1107ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 27366 at time 0s, 1111ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 1111ns.
+OSS: Process: 16968 has come unblocked at time 0s, 1111ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 31779 at time 0s, 1121ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 1121ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1121ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 has terminated due to faulty memory access at time 0s, 1132ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1132ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 4278 at time 0s, 1144ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1144ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting write of address 29769 at time 0s, 1148ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 1148ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1156ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 4490 at time 0s, 1158ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1158ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 5920 at time 0s, 1171ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1171ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 6181 at time 0s, 1180ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1180ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1180ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 30660 at time 0s, 1184ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1184ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 22803 at time 0s, 1193ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 1193ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 28675 at time 0s, 1197ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 1197ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1197ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16970 requesting write of address 9796 at time 0s, 1210ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1210ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1213ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 4416 at time 0s, 1214ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1214ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 1328 at time 0s, 1227ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 1227ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 30757 at time 0s, 1234ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 1234ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1234ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 6344 at time 0s, 1238ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1238ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 24230 at time 0s, 1247ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 1247ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 31504 at time 0s, 1261ns.
+OSS: Process: 16968 has come unblocked at time 0s, 1261ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 734 at time 0s, 1275ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 22631 at time 0s, 1282ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 1282ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 15016 at time 0s, 1295ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 1295ns.
+OSS: Process: 16968 has come unblocked at time 0s, 1295ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 31518 at time 0s, 1308ns.
+OSS: Dirty bit of frame 18 set, adding additional time to the clock
+OSS: Process: 16968 has come unblocked at time 0s, 1318ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 27757 at time 0s, 1331ns.
+OSS: Process 16968 has entered blocked queue at time 0s, 1331ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 14904 at time 0s, 1333ns.
+OSS: Process: 16968 has come unblocked at time 0s, 1333ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16968 requesting write of address 2159 at time 0s, 1341ns.
+OSS: Dirty bit of frame 34 set, adding additional time to the clock
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 0
+OSS: Process 16969 has terminated due to faulty memory access at time 0s, 1356ns.
+OSS: Total Processes Terminated: 1 and has mesg terminated value: 1
+OSS: Process 16968 requesting read of address 14638 at time 0s, 1370ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 has terminated due to faulty memory access at time 0s, 1372ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 4901 at time 0s, 1377ns.
+OSS: Dirty bit of frame 12 set, adding additional time to the clock
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 853 at time 0s, 1392ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 27423 at time 0s, 1403ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 1403ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 31857 at time 0s, 1417ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 1417ns.
+OSS: Process: 16971 has come unblocked at time 0s, 1421ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 1630 at time 0s, 1430ns.
+OSS: Dirty bit of frame 58 set, adding additional time to the clock
+OSS: Process: 16971 has come unblocked at time 0s, 1430ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 12026 at time 0s, 1442ns.
+OSS: Dirty bit of frame 59 set, adding additional time to the clock
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 669 at time 0s, 1449ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting read of address 28444 at time 0s, 1460ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 30192 at time 0s, 1467ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 1467ns.
+OSS: Process: 16971 has come unblocked at time 0s, 1478ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16971 requesting write of address 18460 at time 0s, 1491ns.
+OSS: Process 16971 has entered blocked queue at time 0s, 1491ns.
+OSS: Process: 16971 has come unblocked at time 0s, 1504ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 616 at time 0s, 1504ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 1504ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16967 requesting write of address 6906 at time 0s, 1518ns.
+OSS: Process 16967 has been set to status blocked
+OSS: Process 16967 has entered blocked queue at time 0s, 1518ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1518ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 19341 at time 0s, 1530ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 1530ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1530ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16968 requesting read of address 28841 at time 0s, 1538ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1538ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 0
+OSS: Process 16968 has terminated due to faulty memory access at time 0s, 1550ns.
+OSS: Total Processes Terminated: 2 and has mesg terminated value: 1
+OSS: Process 16967 requesting read of address 21430 at time 0s, 1571ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 1571ns.
+OSS: Total Processes Terminated: 3 and has mesg terminated value: 0
+OSS: Process 16967 requesting write of address 4773 at time 0s, 1583ns.
+OSS: Dirty bit of frame 41 set, adding additional time to the clock
+OSS: Process: 16967 has come unblocked at time 0s, 1594ns.
+OSS: Total Processes Terminated: 3 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 23163 at time 0s, 1602ns.
+OSS: Total Processes Terminated: 3 and has mesg terminated value: 0
+OSS: Process 16967 requesting read of address 5146 at time 0s, 1612ns.
+OSS: Process 16967 has entered blocked queue at time 0s, 1612ns.
+OSS: Total Processes Terminated: 3 and has mesg terminated value: 0
+OSS: Process 16967 has terminated due to faulty memory access at time 0s, 1625ns.
+OSS: Process: 16967 has come unblocked at time 0s, 1625ns.
+OSS: Total Processes Terminated: 3 and has mesg terminated value: 1
+OSS: Process 16970 requesting read of address 13036 at time 0s, 1638ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1638ns.
+OSS: Total Processes Terminated: 4 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 21284 at time 0s, 1652ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1652ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1652ns.
+OSS: Total Processes Terminated: 4 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 9749 at time 0s, 1658ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1658ns.
+OSS: Total Processes Terminated: 4 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 10945 at time 0s, 1668ns.
+OSS: Total Processes Terminated: 4 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 22398 at time 0s, 1671ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1671ns.
+OSS: Total Processes Terminated: 4 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 16831 at time 0s, 1682ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1682ns.
+OSS: Total Processes Terminated: 4 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 14229 at time 0s, 1692ns.
+OSS: Total Processes Terminated: 4 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 15175 at time 0s, 1695ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1695ns.
+OSS: Total Processes Terminated: 4 and has mesg terminated value: 0
+OSS: Process 16971 has terminated due to faulty memory access at time 0s, 1706ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1706ns.
+OSS: Total Processes Terminated: 4 and has mesg terminated value: 1
+OSS: Process 16970 requesting write of address 23264 at time 0s, 1711ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1711ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1721ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting write of address 5123 at time 0s, 1732ns.
+OSS: Dirty bit of frame 73 set, adding additional time to the clock
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 24134 at time 0s, 1746ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 23267 at time 0s, 1751ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting write of address 22911 at time 0s, 1751ns.
+OSS: Dirty bit of frame 97 set, adding additional time to the clock
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 21962 at time 0s, 1767ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 14133 at time 0s, 1772ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 20107 at time 0s, 1775ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 28040 at time 0s, 1779ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1779ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 23208 at time 0s, 1789ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1789ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 16635 at time 0s, 1795ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 17940 at time 0s, 1799ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1799ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 1080 at time 0s, 1813ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1813ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting write of address 4573 at time 0s, 1821ns.
+OSS: Dirty bit of frame 71 set, adding additional time to the clock
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 14277 at time 0s, 1834ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 4960 at time 0s, 1838ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 9224 at time 0s, 1852ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 26995 at time 0s, 1855ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1855ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 7466 at time 0s, 1859ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1859ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1859ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting read of address 16207 at time 0s, 1870ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1870ns.
+OSS: Process: 16970 has come unblocked at time 0s, 1870ns.
+OSS: Total Processes Terminated: 5 and has mesg terminated value: 0
+OSS: Process 16970 requesting write of address 31751 at time 0s, 1871ns.
+OSS: Process 16970 has entered blocked queue at time 0s, 1871ns.
+OSS: Process 16970 has terminated due to too many loops at time0s, 1871ns.

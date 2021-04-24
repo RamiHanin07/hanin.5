@@ -39,7 +39,7 @@ struct processes{
     bool typeOfSystem;
     int blockRestartSec;
     int blockRestartNS;
-    bool unblocked;
+    bool blocked;
     int timeInReadySec;
     int timeInReadyNS;
     pages pageTable[32];
@@ -110,6 +110,8 @@ int main(int argc, char* argv[]){
     int totalTimeTilExpire = 5;
     alarm(totalTimeTilExpire);
     srand(getpid());
+    ofstream log("log.txt", ios::app);
+    log.close();
 
 
 
@@ -169,7 +171,11 @@ int main(int argc, char* argv[]){
     static int outOfOneHund = 100;
     terminate = false;
     while(terminate == false){
-        // cout << "loops: " << loops << endl;
+        message.mesg_type = getpid();
+        while(message.mesg_blocked == true){
+            msgrcv(msgidTwo, &message, sizeof(message), message.mesg_type, 0);
+        };
+        // cout << "unblocked user" << endl;
         
         strcpy(message.mesg_text, "Message Received");
         ptNumber = rand()%((ptMax - 1)+1);
@@ -196,17 +202,26 @@ int main(int argc, char* argv[]){
         msgrcv(msgidTwo, &message, sizeof(message), message.mesg_type, 0);
         // cout << "after user message rcv" << endl;
         // cout << message.mesg_terminate << " ; message terminate" <<endl;
-        if(loops > 5){
+        if(loops > 1000){
+            cout << "loops: " << loops << endl;
             didItTerminate = rand()%((outOfOneHund - 1)+1);
+            cout << didItTerminate <<  " did it Terminate? must be lower than " << chanceToTerminate << endl;
             if(didItTerminate < chanceToTerminate){
                 // cout << "enter chance to terminate" << endl;
                 terminate = true;
             }
+            else{
+                loops = 0;
+            }
+
+            log.open("log.txt", ios::app);
+            log << "OSS: Process " << message.mesg_pid << " has terminated due to too many loops at time" << clock->sec << "s, " << clock->nano << "ns." << endl;
+            log.close();
         }
             // cout << terminate << " var terminate" << endl;
         if(message.mesg_terminateNow == true){
             // cout << "enter mesg term is true" << endl;
-            message.mesg_terminateNow = terminate;
+            terminate = message.mesg_terminateNow;
         }
         loops++;
     };
