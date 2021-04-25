@@ -40,6 +40,7 @@ struct processes{
     int blockRestartSec;
     int blockRestartNS;
     bool blocked;
+    bool terminated;
     int timeInReadySec;
     int timeInReadyNS;
     pages pageTable[32];
@@ -166,14 +167,30 @@ int main(int argc, char* argv[]){
     int chanceforOutOfBounds = 5;
     int isItOutOfBounds;
     int isItRead;
-    int chanceToTerminate = 50;
+    int chanceToTerminate = 5;
     int didItTerminate;
     static int outOfOneHund = 100;
     terminate = false;
     while(terminate == false){
         message.mesg_type = getpid();
+        if(message.mesg_blocked == true){
+            log.open("log.txt", ios::app);
+            log << "User: Process " << message.mesg_pid << " is now blocked" << endl;
+            log.close();
+        }
         while(message.mesg_blocked == true){
             msgrcv(msgidTwo, &message, sizeof(message), message.mesg_type, 0);
+            if(message.mesg_blocked == false){
+                log.open("log.txt", ios::app);
+                log << "User: Process " << message.mesg_pid << " has been allowed to continue" << endl;
+                log.close();
+            }
+            else{
+                log.open("log.txt", ios::app);
+                log << "User: Process " << message.mesg_pid << " should still be blocked" << endl;
+                log.close();
+            }
+            
         };
         // cout << "unblocked user" << endl;
         
@@ -200,27 +217,33 @@ int main(int argc, char* argv[]){
         // cout << "after user message send" << endl;
         message.mesg_type = getpid();
         msgrcv(msgidTwo, &message, sizeof(message), message.mesg_type, 0);
+        log.open("log.txt", ios::app);
+        log << "User: Process " << message.mesg_pid << " is past being stuck on receieve" << endl;
+        log.close();
         // cout << "after user message rcv" << endl;
         // cout << message.mesg_terminate << " ; message terminate" <<endl;
         if(loops > 1000){
-            cout << "loops: " << loops << endl;
+            // cout << "loops: " << loops << endl;
             didItTerminate = rand()%((outOfOneHund - 1)+1);
-            cout << didItTerminate <<  " did it Terminate? must be lower than " << chanceToTerminate << endl;
+            // cout << didItTerminate <<  " did it Terminate? must be lower than " << chanceToTerminate << endl;
             if(didItTerminate < chanceToTerminate){
                 // cout << "enter chance to terminate" << endl;
                 terminate = true;
+                log.open("log.txt", ios::app);
+                log << "USER: Process " << message.mesg_pid << " has terminated due to too many loops at time" << clock->sec << "s, " << clock->nano << "ns." << endl;
+                log.close();
             }
             else{
                 loops = 0;
             }
 
-            log.open("log.txt", ios::app);
-            log << "OSS: Process " << message.mesg_pid << " has terminated due to too many loops at time" << clock->sec << "s, " << clock->nano << "ns." << endl;
-            log.close();
         }
             // cout << terminate << " var terminate" << endl;
         if(message.mesg_terminateNow == true){
             // cout << "enter mesg term is true" << endl;
+            log.open("log.txt", ios::app);
+            log << "USER: Process " << message.mesg_pid << " has receieved terminateNow" << endl;
+            log.close();
             terminate = message.mesg_terminateNow;
         }
         loops++;
@@ -229,7 +252,11 @@ int main(int argc, char* argv[]){
     // cout << "process dies" << endl;
     // cout << message.mesg_terminateNow << " this should be 1" << endl;
     message.mesg_terminated = 1;
+    log.open("log.txt", ios::app);
+    log << "USER: Process " << message.mesg_pid << " has actually terminated" << endl;
+    log.close();
     message.mesg_type = 1;
+    message.mesg_ptNumber = -1;
     msgsnd(msgid, &message, sizeof(message), 0);
     return 0;
 }

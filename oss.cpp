@@ -41,6 +41,7 @@ struct processes{
     int blockRestartSec;
     int blockRestartNS;
     bool blocked;
+    bool terminated;
     int timeInReadySec;
     int timeInReadyNS;
     pages pageTable[32];
@@ -112,7 +113,7 @@ int main(int argc, char* argv[]){
     struct simClock *clock;
     struct processes blockedQueue[18];
     bool blocked = false;
-    const int blockRestartSecMax = 5;
+    const int blockRestartSecMax = 1;
     const int blockRestartNSMax = 1000;
     int blockRestartSec = rand()%((blockRestartSecMax - 1)+1);
     int blockRestartNS = rand()%((blockRestartNSMax - 1)+1);
@@ -132,7 +133,7 @@ int main(int argc, char* argv[]){
     int i = 0;
     int interval = 0;
     int billion = 100000000;
-    int maxSystemTimeSpent = 15;
+    int maxSystemTimeSpent = 1000;
     const int maxTimeBetweenNewProcsNS = 100;
     const int maxTimeBetweenNewProcsSecs = 1;
     int overWritePid = 0;
@@ -199,7 +200,7 @@ int main(int argc, char* argv[]){
     char fileName[10] = "test";
     // cout << "before fork" << endl;
     //strcpy(buffer, fileName);
-    for(int i = 0; i < 6; i++){
+    for(int i = 0; i < 18; i++){
         interval = rand()%((maxTimeBetweenNewProcsNS - 1)+1);
         if(fork() == 0){
             clock->nano+= interval;
@@ -244,26 +245,31 @@ int main(int argc, char* argv[]){
                 numBlocked++;
             }
         }
-        cout << numBlocked << " number of unblocked processes" << endl;
-        cout << ((totalProcesses - totalTerminated)) << " number of current alive processes" << endl;
-        log.open("log.txt",ios::app);
-        log << "OSS: Total Processes Terminated: " << totalTerminated << " and has mesg terminated value: " << message.mesg_terminated << endl;
+
+        log.open("log.txt", ios::app);
+        log << "Current Time : " << clock->sec << "s, " << clock->nano << "ns." << endl;
         log.close();
+        // cout << numBlocked << " number of unblocked processes" << endl;
+        // cout << ((totalProcesses - totalTerminated)) << " number of current alive processes" << endl;
+        // log.open("log.txt",ios::app);
+        // log << "OSS: Total Processes Terminated: " << totalTerminated << " and has mesg terminated value: " << message.mesg_terminated << endl;
+        // log.close();
 
         if(message.mesg_terminated == true){
                 // log.open("log.txt", ios::app);
                 // log << "Entered terminated process loop " << endl;
                 // log.close();
                 totalTerminated++;
-                cout << message.mesg_pid << " ; terminated block pid" << endl;
+                // cout << message.mesg_pid << " ; terminated block pid" << endl;
                 for(int i = 0; i < 18; i++){
                     // log.open("log.txt", ios::app);
                     // log << "OSS: Process " << message.mesg_pid << " message pid against pTable pid: " << pTable[i].pid <<endl;
                     // log.close();
                     if(pTable[i].pid == message.mesg_pid){
-                        // log.open("log.txt", ios::app);
-                        // log << "OSS: Process " << message.mesg_pid << " has not changed to pid -1 " <<endl;
-                        // log.close();
+                        log.open("log.txt", ios::app);
+                        log << "OSS: Process " << message.mesg_pid << " has been removed from process Table" <<endl;
+                        log.close();
+                        pTable[i].terminated = true;
                         pTable[i].pid = -1;
                     }
                 }
@@ -273,13 +279,30 @@ int main(int argc, char* argv[]){
                 while(clock->nano >= billion){
                 clock->nano-= billion;
                 clock->sec+= 1;
+
             };
         }
+        log.open("log.txt", ios::app);
+        log << "numBlocked: " << numBlocked << ", current available processes: " << (totalProcesses - totalTerminated) << endl;
+        log.close();
         if(numBlocked != (totalProcesses - totalTerminated)){
             if(msgrcv(msgid, &message, sizeof(message), 1, 0) == -1){
                 perror("msgrcv");
                 return 1;
             }
+
+            int currentPTableIndex = -1;
+            //Check all message variables
+            for(int i = 0; i < 18; i++){
+                if(pTable[i].pid == message.mesg_pid){
+                    currentPTableIndex = i;
+                    if(message.mesg_terminated == true){
+                        pTable[i].terminated = true;
+                        pTable[i].pid = -1;
+                    }
+                }
+            }
+
             // cout << "after message receieve" << endl;
 
             // cout << msgrcv(msgid, &message, sizeof(message), 1, 0) << " message queue return " << endl;
@@ -287,8 +310,8 @@ int main(int argc, char* argv[]){
             interval = rand()%((maxSystemTimeSpent - 1)+1);
             clock->nano+= interval;
             while(clock->nano >= billion){
-                clock->nano-= billion;
-                clock->sec+= 1;
+                clock->nano -= billion;
+                clock->sec += 1;
             };
             message.mesg_type = message.mesg_pid;
             // cout << message.mesg_ptNumber << " oss PtNUMBER" << endl;
@@ -304,10 +327,18 @@ int main(int argc, char* argv[]){
                 // totalTerminated++;
                 // msgsnd(msgidTwo, &message, sizeof(message), 0); Deprecated, there's a message send after the conditionals, don't need this one.
                 log.open("log.txt", ios::app);
-                log << "OSS: Process " << message.mesg_pid << " has terminated due to faulty memory access at time " << clock->sec << "s, " << clock->nano << "ns." << endl;
+                log << "OSS: Process " << message.mesg_pid << " will terminate due to faulty memory access at time " << clock->sec << "s, " << clock->nano << "ns." << endl;
+                log << "OSS: Process " << message.mesg_pid << " has terminated status of " << message.mesg_terminated << endl;
                 log.close();
             }
-            else{
+            else if(message.mesg_terminated == true){
+                log.open("log.txt", ios::app);
+                log << "OSS: Process " << message.mesg_pid << " has entered termination conditional, will be skipped" <<endl;
+                log << "OSS: Process " << message.mesg_pid << " has status terminated" << endl;
+                log.close();
+            }
+            else if(pTable[currentPTableIndex].terminated != true)
+            {
                 if(message.mesg_terminateNow == true){
                     log.open("log.txt", ios::app);
                     log << "OSS: Process " << message.mesg_pid << " has been told to terminate but has not " << endl;
@@ -333,7 +364,7 @@ int main(int argc, char* argv[]){
                 }
 
                 if(blocked == true){
-                    cout << message.mesg_pid << " this pid is blocked" << endl;
+                    // cout << message.mesg_pid << " this pid is blocked" << endl;
                     //Process must go in blocked queue :(
                         for(int i = 0; i < 18; i++){
                             //If the space in the blocked Queue is open
@@ -351,10 +382,11 @@ int main(int argc, char* argv[]){
                                 blockedQueue[i].pid = message.mesg_pid;
                                 blockRestartSec = rand()%((blockRestartSecMax - 1)+1);
                                 blockRestartNS = rand()%((blockRestartNSMax - 1)+1);
-                                blockedQueue[i].blockRestartSec = clock->sec + message.mesg_unblockSec;
-                                blockedQueue[i].blockRestartNS = clock->nano + message.mesg_unblockNS;
+                                blockedQueue[i].blockRestartSec = clock->sec;
+                                blockedQueue[i].blockRestartNS = clock->nano;
                                 log.open("log.txt", ios::app);
                                 log << "OSS: Process " << message.mesg_pid << " has entered blocked queue at time " << clock->sec << "s, " << clock->nano << "ns." << endl;
+                                log << "OSS: Process " << message.mesg_pid << " will exit blocked queue at time " << blockedQueue[i].blockRestartSec << "s, " << blockedQueue[i].blockRestartNS << "ns." << endl;
                                 log.close();
                                 i = 18;
                             }
@@ -398,19 +430,48 @@ int main(int argc, char* argv[]){
                     }
                 }
             }
+            interval = rand()%((maxSystemTimeSpent - 1)+1);
+            clock->nano+= interval;
+            while(clock->nano >= billion){
+                clock->nano-= billion;
+                clock->sec+= 1;
+            };
+            int tempType = message.mesg_pid;
+            bool tempBlocked = message.mesg_blocked;
             int blockCheck = checkBlockedQueue(clock, blockedQueue, pTable);
             if(blockCheck != 0){
-                cout << blockCheck << " pid coming unblocked" << endl;
+                log.open("log.txt", ios::app);
+                log << "OSS: Block Check: " << blockCheck << " is supposed to be unblocked" << endl;
+                log << "OSS: Former Process " << message.mesg_pid << " has status terminateNow of " << message.mesg_terminateNow << endl;
+                log.close();
+
+                interval = rand()%((maxSystemTimeSpent - 1)+1);
+                clock->nano+= interval;
+                while(clock->nano >= billion){
+                    clock->nano-= billion;
+                    clock->sec+= 1;
+                };
                 message.mesg_blocked = false;
                 // cout << blockCheck << " unblocked pid" << endl;
-                message.mesg_pid = blockCheck;
+                message.mesg_type = blockCheck;
                 log.open("log.txt", ios::app);
                 log << "OSS: Process: " << blockCheck << " has come unblocked at time " << clock->sec << "s, " << clock->nano << "ns." << endl;
                 log.close();
-                msgsnd(msgidTwo, &message, sizeof(message), 0);\
+                msgsnd(msgidTwo, &message, sizeof(message), 0);
+                // if(message.mesg_terminated != true || message.mesg_type != tempPid){
+                    message.mesg_blocked = tempBlocked;
+                    message.mesg_type = tempType;
+                    log.open("log.txt", ios::app);
+                    log << "OSS: Current Process has been set to : " << message.mesg_pid << " with blocked status: " << message.mesg_blocked << endl;
+                    log.close();
+                // }
+                
             }
 
             if(message.mesg_terminated != true){
+                log.open("log.txt", ios::app);
+                log << "OSS: Process " << message.mesg_pid << " is being sent a message" << endl;
+                log.close();
                 message.mesg_type = message.mesg_pid;
                 msgsnd(msgidTwo, &message, sizeof(message), 0);
             }
@@ -418,7 +479,9 @@ int main(int argc, char* argv[]){
         }
         else
         {
-            cout << "all processes blocked" << endl;
+            log.open("log.txt", ios::app);
+            log << "OSS: All Processes Blocked" << endl;
+            log.close();
             interval = rand()%((maxSystemTimeSpent - 1)+1);
             clock->nano+= interval;
             while(clock->nano >= billion){
@@ -433,6 +496,9 @@ int main(int argc, char* argv[]){
                 message.mesg_blocked = false;
                 // cout << blockCheck << " unblocked pid" << endl;
                 message.mesg_pid = blockCheck;
+                log.open("log.txt", ios::app);
+                log << "OSS: Process" << message.mesg_pid << " has come unblocked and is being sent a message to continue" << endl;
+                log.close();
                 msgsnd(msgidTwo, &message, sizeof(message), 0);
             }
         }
@@ -445,7 +511,9 @@ int main(int argc, char* argv[]){
         if(pTable[i].pid != -1){
             log.open("log.txt", ios::app);
             log << "OSS: Process: " << pTable[i].pid << " has not terminated " <<endl;
+            log << message.mesg_pid << " ; terminated block pid" << endl;
             log.close();
+            // log << "OSS: Process: " << message.mesg_pid << endl;
         }
     }
     displayFrameTable(frameTable);
@@ -534,18 +602,20 @@ void displayFrameTable(vector<frame> &frameTable){
 }
 
 int checkBlockedQueue(simClock *clock, processes blockedQueue[18], processes *pTable){
+    ofstream log("log.txt", ios::app);
+    log.close();
     cout << "enter checkBlockedQueue" << endl;
     int temp = 0;
     for(int i = 0; i < 18; i++){
-        cout << blockedQueue[i].pid << " blockedQueue Pid at index: " << i << endl;
+        // cout << blockedQueue[i].pid << " blockedQueue Pid at index: " << i << endl;
         if(blockedQueue[i].pid != -1){
-            cout << "found blocked process" << endl;
-            cout << blockedQueue[i].blockRestartSec << " blocked process unblocked at sec" << endl;
-            cout << blockedQueue[i].blockRestartNS << " blocked queue unblocked at ns" << endl;
-            cout << clock->sec << " current seconds" << endl;
-            cout << clock->nano << " current ns" << endl;
-            if((blockedQueue[i].blockRestartSec < clock->sec) || (blockedQueue[i].blockRestartSec == clock->sec && blockedQueue[i].blockRestartNS < clock->nano)){
-                cout << "process should be unblocked" << endl;
+            // cout << "found blocked process" << endl;
+            // cout << blockedQueue[i].blockRestartSec << " blocked process unblocked at sec" << endl;
+            // cout << blockedQueue[i].blockRestartNS << " blocked queue unblocked at ns" << endl;
+            // cout << clock->sec << " current seconds" << endl;
+            // cout << clock->nano << " current ns" << endl;
+            if((blockedQueue[i].blockRestartSec < clock->sec) || (blockedQueue[i].blockRestartSec == clock->sec && blockedQueue[i].blockRestartNS <= clock->nano)){
+                // cout << "process should be unblocked" << endl;
                 for(int j = 0; j < 18; j++){
                     if(blockedQueue[i].pid == pTable[i].pid){
                         pTable[i].blocked = false;
@@ -555,9 +625,16 @@ int checkBlockedQueue(simClock *clock, processes blockedQueue[18], processes *pT
                 blockedQueue[i].pid = -1;
                 // cout << clock->nano << "time passed" <<endl;
                 // cout << clock->sec << " time passed sec" <<endl;
-                cout << blockedQueue[i].blockRestartSec << " ; time to restart sec" <<endl;
-                cout << blockedQueue[i].blockRestartNS << " ; time to restart ns" <<endl;
+                // cout << blockedQueue[i].blockRestartSec << " ; time to restart sec" <<endl;
+                // cout << blockedQueue[i].blockRestartNS << " ; time to restart ns" <<endl;
                 return temp;
+            }else
+            {
+                // log.open("log.txt", ios::app);
+                // log << "checkBlockedQueue: Process: " << blockedQueue[i].pid << " cannot be unblocked" << endl;
+                // log << "checkBlockedQueue: Current Time is: " << clock->sec << "s, " << clock->nano << "ns." << endl;
+                // log << "checkBlockedQueue: Time Required Til Unblock << " << blockedQueue[i].blockRestartSec << "s, " << blockedQueue[i].blockRestartNS << "ns" << endl;
+                // log.close();
             }
         }
     }
@@ -566,17 +643,22 @@ int checkBlockedQueue(simClock *clock, processes blockedQueue[18], processes *pT
 }
 
 bool secondChance(simClock *clock, vector<frame> &frameTable){
-    cout << "enter second Chance" << endl;
+    ofstream log("log.txt", ios::app);
+    log.close();
     int maxSize = frameTable.size();
     bool cleared = false;
     if(frameTable.size() >= 256){
-        cout << "enter max frame size" << endl;
+        log.open("log.txt", ios::app);
+        log << "Second Chance: Too Many Frames" << endl;
+        log.close();
         //Too many frames, time to start replacing
         for(int index = 0 ; index < maxSize; index++){
             //If this frame hasn't been used recently.
             if(frameTable[index].secondChance == 0){
                 //Remove this element from the array
-                cout << "erased index " << index << endl;
+                log.open("log.txt", ios::app);
+                log << "erased index " << index << endl;
+                log.close();
                 frameTable.erase(frameTable.begin() + index);
                 cleared = true;
                 index = maxSize;
@@ -592,7 +674,9 @@ bool secondChance(simClock *clock, vector<frame> &frameTable){
         for(int index = 0; index < maxSize; index++){
             //Go to the first element that is 0, which technically should be the first element of the vector, and erase it.
             if(frameTable[index].secondChance == 0){
-                cout << "erased index " << index << endl;
+                log.open("log.txt", ios::app);
+                log << "erased index after first passthrough: " << index << endl;
+                log.close();
                 frameTable.erase(frameTable.begin() + index);
                 cleared = true;
                 index = maxSize;
